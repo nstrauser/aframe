@@ -1,3 +1,5 @@
+cb_ratios_l = ['1.33','1.3333','1.66','1.78','1.7777','1.85','2.00','1','2.39']
+cb_ratios_r = ['1']
 cams = [
     "ALEXA Classic","ALEXA XT",
     "ALEXA SXT","ALEXA Mini",

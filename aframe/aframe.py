@@ -70,6 +70,37 @@ class Aframe(QMainWindow, Framelines, Cameras):
             lambda: Framelines.fl_ratio_event(
         self, self.cbRatioFL.currentText(),
         fl=Framelines.fl_pushbutton_event(self)))
+        # ---------- CUSTOM ASPECT RATIO --------------->>>
+        self.leRatioFLALeft.editingFinished.connect(
+            lambda: Framelines.custom_ratio(
+                self, self.cbRatioFL.currentText(),
+                fl=Framelines.fl_pushbutton_event(self)))
+
+        self.leRatioFLARight.editingFinished.connect(
+            lambda: Framelines.custom_ratio(
+                self, self.cbRatioFL.currentText(),
+                fl=Framelines.fl_pushbutton_event(self)))
+
+        self.leRatioFLBLeft.editingFinished.connect(
+            lambda: Framelines.custom_ratio(
+                self, self.cbRatioFL.currentText(),
+                fl=Framelines.fl_pushbutton_event(self)))
+
+        self.leRatioFLBRight.editingFinished.connect(
+            lambda: Framelines.custom_ratio(
+                self, self.cbRatioFL.currentText(),
+                fl=Framelines.fl_pushbutton_event(self)))
+
+        self.leRatioFLCLeft.editingFinished.connect(
+            lambda: Framelines.custom_ratio(
+                self, self.cbRatioFL.currentText(),
+                fl=Framelines.fl_pushbutton_event(self)))
+
+        self.leRatioFLCRight.editingFinished.connect(
+            lambda: Framelines.custom_ratio(
+                self, self.cbRatioFL.currentText(),
+                fl=Framelines.fl_pushbutton_event(self)))
+        # ---------- CUSTOM ASPECT RATIO ---------------<<<
 
         self.leScalingFL.textEdited.connect(
             lambda: Framelines.fl_scaling_event(self))
@@ -88,25 +119,28 @@ class Aframe(QMainWindow, Framelines, Cameras):
 
 
     def splash_gui(self):
-        return self.logo.show(), self.fCameraSettings.hide(),\
-               self.fCenterRatioA.hide(), self.fCenterRatioB.hide(),\
-               self.fCenterRatioC.hide(), self.fFrameline.hide(),\
-               self.fShading.hide(),self.lFramelineContainer.hide(),\
-               self.fRecordingArea.hide(), self.lFLA.hide(), self.lFLB.hide(),\
-               self.lFLC.hide(), self.fOffset.hide(), self.fFLStats.hide(),\
-               self.fCenterRatioA.hide(), self.fCenterRatioB.hide(),\
-               self.fCenterRatioC.hide()
+        self.logo.show(), self.fCameraSettings.hide(),\
+        self.fCenterRatioA.hide(), self.fCenterRatioB.hide(),\
+        self.fCenterRatioC.hide(), self.fFrameline.hide(),\
+        self.fShading.hide(), self.lFramelineContainer.hide(),\
+        self.fRecordingArea.hide(), self.lFLA.hide(), self.lFLB.hide(),\
+        self.lFLC.hide(), self.fOffset.hide(), self.fFLStats.hide(),\
+        self.fCenterRatioA.hide(), self.fCenterRatioB.hide(),\
+        self.fCenterRatioC.hide(), self.pbFLA.setCheckable(False),\
+        self.pbFLB.setCheckable(False), self.pbFLC.setCheckable(False)
 
     def default_main_gui(self):
-        return self.logo.hide(), self.fCameraSettings.show(),\
-               self.fFrameline.show(), self.fShading.hide(),\
-               self.lFramelineContainer.show(), self.fRecordingArea.show(),\
-               self.lRecordingAreaBG.resize(620, 349), self.lRecordingAreaBG.move(50, 28),\
-               self.fOffset.show(), self.fFLStats.show(), self.lFLAText.hide(),\
-               self.lFLAScaleText.hide() ,self.lFLBText.hide(), self.lFLBScaleText.hide(),\
-               self.lFLCText.hide(), self.lFLCScaleText.hide(), self.fCenterRatioA.hide(),\
-               self.fCenterRatioB.hide(), self.fCenterRatioC.hide(),\
-               self.pbFLA.setChecked(True), Cameras.camera_defaults(self)
+        self.logo.hide(), self.fCameraSettings.show(),\
+        self.fFrameline.show(), self.fShading.hide(),\
+        self.lFramelineContainer.show(), self.fRecordingArea.show(),\
+        self.lRecordingAreaBG.resize(620, 349), self.lRecordingAreaBG.move(50, 28),\
+        self.fOffset.show(), self.fFLStats.show(), self.lFLAText.hide(),\
+        self.lFLAScaleText.hide() ,self.lFLBText.hide(), self.lFLBScaleText.hide(),\
+        self.lFLCText.hide(), self.lFLCScaleText.hide(), self.fCenterRatioA.hide(),\
+        self.fCenterRatioB.hide(), self.fCenterRatioC.hide(),\
+        self.pbFLA.setCheckable(True), self.pbFLA.setChecked(True),\
+        Cameras.camera_defaults(self), self.pbFLB.setCheckable(True),\
+        self.pbFLC.setCheckable(True)
 
 if __name__ == '__main__':
     import sys

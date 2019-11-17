@@ -38,7 +38,11 @@ class Cameras:
     def reso_cb_event(self):
         Cameras.camera_stats(self)
 
-    def formt_cb_event(self, cam='', sensor='', reso='', formt=''):
+    def formt_cb_event(self, cam=None, sensor=None,
+                       reso=None, formt=None
+                       ):
+        if cam is None:
+            cam = [str]
         print('formt_cb_event')
         print(cam)
         if cam == 'ALEXA Mini' or cam == 'Amira' or cam == 'ALEXA Mini LF':
@@ -80,7 +84,7 @@ class Cameras:
         has_sensor = f"{cam} {sensor} {reso} {formt}"
         no_sensor = f"{cam} {reso} {formt}"
 
-        if cam == "ALEXA Classic" or cam == "ALEXA Mini LF" or cam == "ALEXA LF" or cam == "ALEXA 65":
+        if cam == "ALEXA Classic" or cam == "ALEXA SXT" or cam == "ALEXA Mini LF" or cam == "ALEXA LF" or cam == "ALEXA 65":
             return self.cbSqueeze.blockSignals(True), \
                    self.cbSqueeze.clear(),\
                    self.cbSqueeze.addItems(cam_defaults[f'{cam} squeeze']), \
@@ -98,15 +102,25 @@ class Cameras:
                        self.cbSqueeze.addItems(cam_defaults['ALEXA XT squeeze']), \
                        self.cbSqueeze.blockSignals(False)
 
-        elif cam == "ALEXA SXT":
-            pass
-
         elif cam == "ALEXA Mini":
-            pass
+            self.cbSqueeze.blockSignals(True)
+            self.cbSqueeze.clear()
+            self.cbSqueeze.addItems(cam_settngs[no_sensor][2])
+            self.cbSqueeze.blockSignals(False)
 
         elif cam == "Amira":
-            pass
+            if self.cbFormat.currentText() == "Apple ProRes":
+                self.cbSqueeze.blockSignals(True)
+                self.cbSqueeze.clear()
+                self.cbSqueeze.addItems(cam_settngs['Amira Apple ProRes'])
+                self.cbSqueeze.blockSignals(False)
 
+
+            elif self.cbFormat.currentText() == "ARRIRAW":
+                self.cbSqueeze.blockSignals(True)
+                self.cbSqueeze.clear()
+                self.cbSqueeze.addItems(cam_settngs['Amira ARRIRAW'])
+                self.cbSqueeze.blockSignals(False)
 
     def camera_stats(self):
         cam = self.cbCameras.currentText()
